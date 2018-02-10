@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
 import Navbar from './Navbar';
-import YourCart from './YouCart';
+import YourCart from './Cart/YouCart';
 import Products from './Products';
 import ProductList from '../../../product-payload.json';
 import './app.css';
@@ -10,41 +9,52 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      cart: []
+      cart: {}
     }
 
     this.addToCart = this.addToCart.bind(this);
+    this.removeFromCart = this.removeFromCart.bind(this);
   }
 
-  addToCart(e, product) {
-    
-    this.setState({
-      cart: [...this.state.cart, product]
-    });
+  addToCart(e, product, id) {
+    const newCart = Object.assign({}, this.state.cart, {[id]: product})
 
-    console.log('Im clicking', this.state.cart);
+    this.setState({
+      cart: newCart
+    });
+  }
+
+  removeFromCart(e, id) {
+    console.log('im clicking', id)
+    let newCart = Object.assign({}, this.state.cart);
+    delete newCart[id]
+
+    this.setState({
+      cart: newCart
+    })
   }
 
   render() {
     return (
       <div>
         <Navbar cart={this.state.cart}/>
-        <h2>Shop Our Featured Collection</h2>
-        <div className="container">
-          <div className="row">
-            {ProductList.products.map((product, i) => {
-              return(
-                <div className="col-md-3" key={i}>
-                  <Products product={product} addToCart={this.addToCart}/>
-                </div>
-              )
-            })}
+        <div  className="background-container">
+          <h2>Shop Our Featured Collection</h2>
+          <div className="container">
+            <div className="row">
+              {ProductList.products.map((product, i) => {
+                return(
+                  <div className="col-md-3" key={i}>
+                    <Products id={i} product={product} addToCart={this.addToCart}/>
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
-
-        <Switch>
-          <Route path="/cart" render={() => <YourCart />} />
-        </Switch>
+        <div>
+          <YourCart cart={this.state.cart} removeFromCart={this.removeFromCart}/>
+        </div>
       </div>
     );
   }

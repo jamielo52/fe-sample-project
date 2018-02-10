@@ -11,12 +11,12 @@ class Navbar extends Component {
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div>
             <a className="navbar-brand" href="#">Cart.ly</a>
-              <Link to="/shop" href="/shop">Shop</Link>
+            <Link to="/shop" href="/shop">Shop</Link>
             <span className="navbar-text">
-              <Link to="/cart" href="/cart">Your Cart</Link>
+              <button className="navbar-brand" data-toggle="modal" data-target="#myModal">Your Cart</button>
             </span>
             <span>
-              {this.props.cart.length}
+              {Object.keys(this.props.cart).length}
             </span>
           </div>
         </nav>
