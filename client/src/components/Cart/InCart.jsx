@@ -2,17 +2,21 @@ import React from 'react';
 
 const InCart = (props) => {
   return (
-    <div>
-      <img className="card-img-top" src={require(`../../../public/images/${props.product.filename}`)} alt="Card image cap" />
-      <span>
-        <div>
-          {props.product.name}
-          <span>
-            <button onClick={((e) => props.removeFromCart(e, props.id))}>x</button>
-          </span>
+    <div className="container in-cart">
+      <div className="row">
+        <div className="col-md-6">
+          <img className="card-img-top img-cart" src={require(`../../../public/images/${props.product.filename}`)} alt="Card image cap" />
         </div>
-        <div>{'$' + (props.product.price / 100).toString()}</div>
-      </span>
+        <div className="col-md-6 product-info">
+          <div>
+              {props.product.name}
+              <span>
+                <i className="fa fa-times-circle" aria-hidden="true" onClick={((e) => props.removeFromCart(e, props.id))}></i>
+              </span>
+          </div>
+          <div className="product-price-cart">{'$' + (props.product.price / 100).toString()}</div>
+        </div>
+      </div>
     </div>
   )
 }

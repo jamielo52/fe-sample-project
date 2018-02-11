@@ -38,10 +38,10 @@ class App extends Component {
     return (
       <div>
         <Navbar cart={this.state.cart}/>
-        <div  className="background-container">
-          <h2>Shop Our Featured Collection</h2>
-          <div className="container">
-            <div className="row">
+        <div className="background-container">
+          <h2 className="feature">Shop our featured collection</h2>
+          <div className="container-fluid ">
+            <div className="row card-deck">
               {ProductList.products.map((product, i) => {
                 return(
                   <div className="col-md-3" key={i}>

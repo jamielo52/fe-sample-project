@@ -8,17 +8,16 @@ class Navbar extends Component {
   render() {
     return(
       <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <div>
-            <a className="navbar-brand" href="#">Cart.ly</a>
-            <Link to="/shop" href="/shop">Shop</Link>
-            <span className="navbar-text">
-              <button className="navbar-brand" data-toggle="modal" data-target="#myModal">Your Cart</button>
-            </span>
-            <span>
-              {Object.keys(this.props.cart).length}
-            </span>
-          </div>
+        <nav className="navbar">
+          <i className="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+          <a className="navbar-brand nav-text" href="#">Cart.ly</a>
+          <a className="shop mr-auto">Shop</a>
+          <span className="navbar-text">
+            <div className="nav-cart" data-toggle="modal" data-target="#myModal">Your Cart</div>
+          </span>
+          <span className="cartCount">
+            {Object.keys(this.props.cart).length}
+          </span>
         </nav>
       </div>
     );
